@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <button bindtap='getJson'>getJson</button>
+    <text wx:key="positionInMedia" wx:for="{{sentences}}" wx:for-index="idx" bindtap='playMe' data-name="{{[item.startMiliSecond, item.endMiliSecond]}}">{{item.originalSentence + "\n\n"}}</text>
+    <audio name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls class="player" bindtimeupdate="bindtimeupdate"></audio>
+
+    <button type="primary" bindtap="audioPlay">播放</button>
+    <button type="primary" bindtap="audioPause">暂停</button>
+    <button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+    <button type="primary" bindtap="audioStart">回到开头</button>
+  </view>
+</view>
