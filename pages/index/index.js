@@ -1,16 +1,13 @@
 //index.js
 //获取应用实例
+var initAudio = require('init_audio')
 const app = getApp()
-const hostName = 'http://localhost:3000'
+// const hostName = 'http://192.168.2.200:3000'
+const hostName = 'http://www.gsenglish.cn'
 
 Page({
   onReady: function (e) {
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createInnerAudioContext('myAudio')
-    this.audioCtx.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-    })
+    initAudio(this, 'myAudio')
   },
   data: {
     name: 'e301',
@@ -66,7 +63,7 @@ Page({
   },
   getJson() {
     wx.request({
-      url: 'http://localhost:3000/newconcept/show/23.json', //仅为示例，并非真实的接口地址
+      url: `${hostName}/newconcept/show/23.json`,
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -78,6 +75,7 @@ Page({
   },
   playMe(e){
     let name = e.currentTarget.dataset.name
+    
     let soundFileName = `${hostName}${name}`
     console.log(soundFileName)
     // this.setData({src: soundFileName})
