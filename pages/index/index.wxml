@@ -9,8 +9,8 @@
   </view>
   <view class="usermotto">
     <button bindtap='getJson'>getJson</button>
-    <text wx:key="positionInMedia" wx:for="{{sentences}}" wx:for-index="idx" bindtap='playMe' data-name="{{[item.startMiliSecond, item.endMiliSecond]}}">{{item.originalSentence + "\n\n"}}</text>
-    <audio name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls class="player" bindtimeupdate="bindtimeupdate"></audio>
+    <text wx:key="positionInMedia" wx:for="{{sentences}}" wx:for-index="idx" bindtap='playMe' data-name="{{item.soundFileName}}">{{item.originalSentence + "\n\n"}}</text>
+    <audio name="{{name}}" author="{{author}}" id="myAudio" controls class="player" ></audio>
 
     <button type="primary" bindtap="audioPlay">播放</button>
     <button type="primary" bindtap="audioPause">暂停</button>

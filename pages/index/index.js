@@ -1,16 +1,21 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const hostName = 'http://localhost:3000'
 
 Page({
   onReady: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx = wx.createInnerAudioContext('myAudio')
+    this.audioCtx.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
   },
   data: {
     name: 'e301',
     author: 'ange',
-    src: 'http://www.gsenglish.cn/sound/e301.mp3',
+    
 
     sentences:[],
     userInfo: {},
@@ -72,8 +77,12 @@ Page({
     })
   },
   playMe(e){
-    let idx = e.currentTarget.dataset.name
-    console.log(idx)
+    let name = e.currentTarget.dataset.name
+    let soundFileName = `${hostName}${name}`
+    console.log(soundFileName)
+    // this.setData({src: soundFileName})
+    this.audioCtx.src = soundFileName
+    this.audioCtx.play()
   },
   audioPlay: function () {
     this.audioCtx.play()
@@ -87,7 +96,5 @@ Page({
   audioStart: function () {
     this.audioCtx.seek(0)
   },
-  bindtimeupdate(e){
-    console.log(e)
-  }
+
 })
