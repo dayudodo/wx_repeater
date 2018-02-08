@@ -3,7 +3,7 @@
 var initAudio = require('init_audio')
 const app = getApp()
 // const hostName = 'http://192.168.2.200:3000'
-const hostName = 'http://www.gsenglish.cn'
+const hostName = 'https://www.gsenglish.cn'
 
 Page({
   onReady: function (e) {
